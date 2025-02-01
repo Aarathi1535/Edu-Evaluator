@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login_style.css') }}">
+    <script defer src="{{ url_for('static', filename='main.js') }}"></script>
+    <title>Login</title>
+</head>
+<body>
+    <div class="container right-panel-active">
+        <!-- Sign Up -->
+        <div class="container__form container--signup">
+            <form action="{{ url_for('signup') }}" method="POST" class="form" id="form1">
+                <h2 class="form__title">Sign Up</h2>
+                <input type="text" name="username" placeholder="Username" class="input" required />
+                <input type="email" name="email" placeholder="Email" class="input" required />
+                <input type="password" name="password" placeholder="Password" class="input" required />
+                <button type="submit" class="btn">Sign Up</button>
+            </form>
+        </div>
+        
+        <!-- Sign In -->
+        <div class="container__form container--signin">
+            <form action="{{ url_for('login') }}" method="POST" class="form" id="form2">
+                <h2 class="form__title">Sign In</h2>
+                <input type="email" name="email" placeholder="Email" class="input" required />
+                <input type="password" name="password" placeholder="Password" class="input" required />
+                <a href="#" class="link">Forgot your password?</a>
+                <button type="submit" class="btn">Sign In</button>
+            </form>
+        </div>
+    
+        <!-- Overlay -->
+        <div class="container__overlay">
+            <div class="overlay">
+                <div class="overlay__panel overlay--left">
+                    <button class="btn" id="signIn">Sign In</button>
+                </div>
+                <div class="overlay__panel overlay--right">
+                    <button class="btn" id="signUp">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div class="flash-messages">
+      {% for category, message in messages %}
+        <div class="flash-message {{ category }}">{{ message }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+</body>
+</html>
