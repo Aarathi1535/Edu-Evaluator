@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Answer Sheet Evaluation</title>
+</head>
+<body>
+    <header>
+        <div class="nav-bar" id="navBar">
+            <span class="close-btn" onclick="toggleNav()">&#10095;</span> 
+            <ul>
+                <li><a href="#home" class="tab-link active" data-tab="home">Home</a></li>
+                <li><a href="#about" class="tab-link" data-tab="about">About</a></li>
+                <li><a href="#contact" class="tab-link" data-tab="contact">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+    <div class="container">
+        <section id="home" class="tab-content active">
+        <h1>Automated Answer Sheet Evaluation</h1>
+        <form method="POST" action="{{ url_for('dashboard') }}" enctype="multipart/form-data">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="class_section">Class & Section:</label>
+            <input type="text" id="class_section" name="class_section" required>
+            
+            <label for="roll_no">Roll No:</label>
+            <input type="text" id="roll_no" name="roll_no" required>
+            
+            <label for="user_score">Desired Score:</label>
+            <input type="text" id="user_score" name="user_score" required>
+            
+            <label for="pdf_file">Upload PDF:</label>
+            <input type="file" id="pdf_file" name="pdf_file" accept="application/pdf" required>
+            
+            <button type="submit" >Evaluate</button>
+        </form>
+        <a href="/report">Download Report</a>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="flashes">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+    </section>
+    <section id="about" class="tab-content">
+        <h2>About</h2>
+        <h3>Welcome to the Edu-Evaluator!</h3>
+        <p>Edu Evaluator is an AI-powered application designed to automate the evaluation of handwritten answer sheets, bringing efficiency, accuracy, and fairness to the grading process. Leveraging cutting-edge Optical Character Recognition (OCR) technology, Machine Learning (ML) algorithms, and Large Language Models (LLMs), Edu Evaluator significantly reduces human intervention while ensuring precise assessment of student responses.</p>
+            <p>Key features of Edu Evaluator:</p>
+            <p>-> Advanced OCR Technology: Utilizes Google Cloud Vision API and Gemini 1.5 Pro to accurately extract handwritten text.</p>
+            <p>-> AI-Based Grading: Employs Natural Language Processing (NLP) and Plan-and-Solve Prompting for logical and unbiased evaluation.</p>
+            <p>-> Efficiency & Speed: Drastically reduces grading time, allowing educators to focus more on student engagement.</p>
+            <p>-> Fair & Unbiased Assessment: Eliminates human biases, ensuring a standardized and equitable evaluation process.</p>
+            <p>With Edu Evaluator, educational institutions can transition from tedious manual grading to a smarter, technology-driven approach that enhances the quality of education and provides instant feedback to students.</p>
+    </section>
+    
+    <section id="contact" class="tab-content">
+        <h2>Contact</h2>
+        <p>Get in touch with us for more information or support.</p>
+        <p><strong>Phone:</strong> +91 9381481266</p>
+        <p><strong>Email:</strong> aarathisree.1535@gmail.com</p>
+    </section>
+    </div>
+
+
+</body>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const tabs = document.querySelectorAll(".tab-link");
+        const contents = document.querySelectorAll(".tab-content");
+
+        tabs.forEach(tab => {
+            tab.addEventListener("click", function (e) {
+                e.preventDefault();
+                
+                // Remove active class from all tabs
+                tabs.forEach(t => t.classList.remove("active"));
+                
+                // Hide all sections
+                contents.forEach(content => content.classList.remove("active"));
+
+                // Add active class to clicked tab
+                this.classList.add("active");
+
+                // Show related section
+                const target = this.getAttribute("data-tab");
+                document.getElementById(target).classList.add("active");
+            });
+        });
+    });
+</script>
+</html>
