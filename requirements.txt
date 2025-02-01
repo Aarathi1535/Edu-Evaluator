@@ -142,7 +142,6 @@ PyMuPDFb==1.24.9
 pyparsing==3.1.2
 PyPDF2==3.0.1
 pypdfium2==4.30.0
-pypiwin32==223
 PySocks==1.7.1
 pytesseract==0.3.10
 python-bidi==0.6.0
