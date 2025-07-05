@@ -66,6 +66,8 @@ For queries, collaborations, or feedback:
 ## 🏆 Acknowledgements
 
 - Developed during **Society for Data Science Internship** (April–Oct 2024)  
+
+### Medium Blog : [Visit here](https://medium.com/@aarathisree.1535/edu-evaluator-how-i-built-an-ai-that-grades-handwritten-answer-sheets-using-flask-and-gemini-ee8665d61240)
 - Published research at **IEEE PuneCon 2024**  
 - Recognized for enhancing educational automation with **AI and LLMs**
 
